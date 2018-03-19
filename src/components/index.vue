@@ -1,8 +1,10 @@
 <template>
-  <div class="w-3 wd" @click="change">123</div>
+  <div class="w-3 h-2 bg-b" @click="change">{{strHuan}}}</div>
 </template>
 
 <script>
+  import Ajax from '@/assets/js/api/ajax.js';
+
   export default {
     name: "index",
     data() {
@@ -12,21 +14,20 @@
     },
     methods: {
       change: function () {
-        var params = new URLSearchParams();
-        params.append('json','123');
-        this.$axios.post('/api/wawajiList', params)
-          // {
-            // headers: {
-            //   'Access-Control-Allow-Origin':'*'
-            // }
-          // }
-        // this.$axios.get('/api/huoDongList')
-          .then(res => console.log(res))
+        Ajax('/wawajiList', {'json': this.strHuan}).then(res => console.log('娃娃列表', decryptByDES(res.data)));
       }
     }
   }
 </script>
 
 <style scoped>
-
+  .w-3 {
+    width: 120px;
+  }
+  .h-2{
+    height: 80px;
+  }
+  .bg-b{
+    background-color: #000;
+  }
 </style>

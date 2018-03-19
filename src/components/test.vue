@@ -3,12 +3,12 @@
     <ul :class="{ textColor: isRed }">
       <li v-for="items in todos">{{items.text}}</li>
     </ul>
-    <button @click="change">变色</button>
+    <button @click="getMsg">变色</button>
   </div>
 </template>
 
 <script>
-  import {mapState, mapGetters} from 'vuex';
+  import {mapState, mapGetters, mapMutations, mapActions} from 'vuex';
 
   export default {
     name: "test",
@@ -25,9 +25,7 @@
       ...mapState(['isRed'])
     },
     methods: {
-      change(){
-        console.log(222);
-      }
+      ...mapMutations(['getMsg'])
     }
   }
 </script>
